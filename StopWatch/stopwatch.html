@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Stop Watch</h1>
+    <div>00:00</div>
+    <button onclick="fun(this)">Start</button>
+    <button onclick="reset()">Reset</button>
+    <script>
+        let divr = document.querySelector('div')
+        let c=0,m =0, iid=-1;
+        let inc = ()=>{
+            c=c+1
+            if(c==60){
+                m=m+1
+                c = 0
+            }
+            divr.innerHTML=(m<10?"0"+m:m)+":"+(c<10?"0"+c:c)
+        }
+        let fun = (btn)=>{
+            if(btn.innerHTML=="Start"){
+                iid = setInterval(inc, 1000)
+                btn.innerHTML="Stop"
+            }
+            else{
+                clearInterval(iid)
+                btn.innerHTML="Start"
+            }
+        }
+        let reset = ()=>{
+            clearInterval(iid)
+            document.querySelector("button").innerHTML="Start"
+            c = 0
+            divr.innerHTML="00:00"
+        }
+    </script>
+</body>
+</html>

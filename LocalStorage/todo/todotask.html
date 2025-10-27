@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="Enter uid" name="uid"/>
+    <input type="text" placeholder="Enter title" name="title"/>
+    <textarea></textarea>
+    <input type="date" name="dl"/>
+    <button onclick="add()">AddTask</button>
+    <button onclick="upd()" style="display: none;">Update</button>
+    <table>
+    </table>
+    <table></table>
+    <script>
+        let ipr=document.querySelectorAll("input")
+        let tarear=document.querySelector("textarea")
+        let tblr=document.querySelectorAll("table")
+        let btnr=document.querySelectorAll("button")
+        let eind=-1
+        let add=()=>{
+            let obj={}
+           /* obj.uid=ipr[0].value
+            obj.title=ipr[1].value
+            obj.dl=ipr[2].value*/
+            for(let i=0;i<ipr.length;i++)
+        {
+            obj[ipr[i].name]=ipr[i].value
+        }
+        obj.desc=tarear.value
+        let arr=localStorage.getItem("task")
+        if(arr)
+        {
+            arr=JSON.parse(arr)
+        }
+        else{
+            arr=[]
+                 }
+         arr.push(obj)
+         
+     localStorage.setItem("task",JSON.stringify(arr))
+     ipr[0].value=""
+     ipr[1].value=""
+     ipr[2].value=""
+     tarear.value=""
+   
+        disp()
+
+        }
+        function disp()
+        {
+            let s="<tr><th colspan='8'>Pending Tasks:</th></tr><tr><th>SNO</th><th>UID</th><th>Title</th><th>Desc</th><th>Dedline</th><th></th><th></th><th></th></tr>"
+            let arr=localStorage.getItem("task")
+            if(arr)
+        {
+            arr=JSON.parse(arr)
+            if(arr.length!=0)
+        {
+            for(let i=0;i<arr.length;i++)
+        {
+            s=s+`<tr><td>${i+1}</td><td>${arr[i].uid}</td><td>${arr[i].title}</td><td>${arr[i].desc}</td><td>${arr[i].dl}</td><td><button onclick="edit(${i})">Edit</button></td><td><button onclick="del(${i})">Delete</button></td><td><button onclick="cmp(${i})">Completed</button></td></tr>`
+        }
+        tblr[0].innerHTML=s
+        tblr[0].border="2"
+
+        }
+        else{
+          tblr[0].innerHTML=""  
+           tblr[0].border="0"
+        }
+
+        }
+        else{
+            tblr[0].innerHTML=""
+             tblr[0].border="0"
+        }
+
+        }
+        disp()
+        function edit(ind)
+        {
+            let arr=JSON.parse(localStorage.getItem("task"))
+             ipr[0].value=arr[ind].uid
+     ipr[1].value=arr[ind].title
+     ipr[2].value=arr[ind].dl
+     tarear.value=arr[ind].desc
+     btnr[0].style.display="none"
+     btnr[1].style.display="inline-block"
+     eind=ind
+
+        }
+        function upd()
+        {
+    let arr=JSON.parse(localStorage.getItem("task")) 
+    let obj={}
+        for(let i=0;i<ipr.length;i++)
+        {
+            obj[ipr[i].name]=ipr[i].value
+        }
+        obj.desc=tarear.value
+        arr[eind]=obj
+        localStorage.setItem("task",JSON.stringify(arr))
+        disp()
+        ipr[0].value=""
+     ipr[1].value=""
+     ipr[2].value=""
+     tarear.value=""
+      btnr[1].style.display="none"
+     btnr[0].style.display="inline-block"
+
+
+        }
+        function del(ind)
+        {
+        let arr=JSON.parse(localStorage.getItem("task")) 
+        arr.splice(ind,1)
+        localStorage.setItem("task",JSON.stringify(arr))
+        disp()
+
+
+        }
+        function cmp(ind)
+        {
+            let carr=localStorage.getItem("cmptask")
+    let arr=JSON.parse(localStorage.getItem("task")) 
+    if(carr)
+    {
+carr=JSON.parse(carr)
+    }
+    else{
+        carr=[]
+
+    }
+    carr.push(arr[ind])
+    arr.splice(ind,1)
+    localStorage.setItem("task",JSON.stringify(arr))
+    localStorage.setItem("cmptask",JSON.stringify(carr))
+    disp()
+    cmpdisp()
+
+
+
+        }
+
+
+         function cmpdisp()
+        {
+            let s="<tr><th colspan='4'>Completed Tasks:</th></tr><tr><th>SNO</th><th>UID</th><th>Title</th><th>Desc</th></tr>"
+            let arr=localStorage.getItem("cmptask")
+            if(arr)
+        {
+            arr=JSON.parse(arr)
+            if(arr.length!=0)
+        {
+            for(let i=0;i<arr.length;i++)
+        {
+            s=s+`<tr><td>${i+1}</td><td>${arr[i].uid}</td><td>${arr[i].title}</td><td>${arr[i].desc}</td></tr>`
+        }
+        tblr[1].innerHTML=s
+        tblr[1].border="2"
+
+        }
+        else{
+          tblr[1].innerHTML=""  
+           tblr[1].border="0"
+        }
+
+        }
+        else{
+            tblr[1].innerHTML=""
+             tblr[1].border="0"
+        }
+
+        }
+cmpdisp()
+    </script>
+</body>
+</html>

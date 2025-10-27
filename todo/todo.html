@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <input type="text" placeholder="Enter Task">
+    <button onclick="add()">Add</button>
+    <button onclick="update()" style="display: none;">Update</button>
+    <table></table>
+    <script>
+        let tasks= [], eind;
+        let ipr = document.querySelector('input')
+        let btnr = document.querySelectorAll('button')
+        let tblr = document.querySelector('table')
+        function disp(){
+            let s = ''
+            for(let i = 0;i<tasks.length;i++){
+                s = s+`<tr><td>${tasks[i]}</td><td><i class="fa-solid fa-pen" onclick="edit(${i})"></i></td><td><i class="fa-solid fa-trash" onclick=del(${i})></i></td>`
+            }
+            tblr.innerHTML = s
+
+        }
+        function add(){
+            tasks.push(ipr.value)
+            disp()
+            ipr.value = ""
+        }
+        function edit(ind){
+            ipr.value = tasks[ind]
+            btnr[0].style.display = "none"
+            btnr[1].style.display = "inline-block"
+            eind = ind
+        }
+        function update(){
+            tasks[eind] = ipr.value
+            disp()
+            btnr[1].style.display = "none"
+            btnr[0].style.display = "inline-block"
+            ipr.value = ""
+        }
+        function del(ind){
+            tasks.splice(ind, 1)
+            disp()
+        }
+    </script>
+</body>
+</html>

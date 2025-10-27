@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Onsubmit</title>
+</head>
+<body>
+    <form action="https://www.google.com" onsubmit = "fun2(event)" onreset="fun3(event)">
+        <input type="text">
+        <select onchange="fun1(this)">
+            <option value="" disabled selected >--select--</option>
+            <option value="2" >DS</option>
+            <option value="3" >Ai</option>
+            <option value="4" >CSE</option>
+            <option value="1" >IT</option>
+        </select>
+        <input type="submit" value="Submit">
+        <input type="reset" value="Clear">
+        <h1></h1>
+    </form>
+    <script>
+        function fun1(e){
+            document.querySelector('h1').innerHTML = "You selected: " + e.value
+        }
+        function fun2(e){
+            let f = confirm("Are you sure want to Submit?")
+            if(!f){
+                e.preventDefault()
+            }
+        }
+        function fun3(e){
+            let f = confirm("Are you sure want to Clear the Form?")
+            if(!f){
+                e.preventDefault()
+            }
+        }
+    </script>
+</body>
+</html>

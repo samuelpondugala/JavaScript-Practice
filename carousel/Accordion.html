@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accordion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+        h1{
+            width: 100%;
+            height: 10vh;
+            background-color: rgb(255, 199, 199);
+            color: rgb(0, 0, 0);
+            margin: 5px 0px;
+            display: flex;
+            justify-content: space-between;
+            box-sizing: border-box;
+            padding: 20px;
+        }
+        p{
+            width: 100%;
+            background-color: rgb(255, 129, 129);
+            box-sizing: border-box;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="con">
+        <h1><span>Item-1</span><i class="fa-solid fa-caret-down" onclick="fun(0)"></i></h1>
+        <p style="display: none;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint laborum dicta architecto illum aperiam quis repellendus eveniet deleniti? Harum iure culpa quo possimus, inventore, tempora impedit sunt deserunt maiores, dignissimos hic neque dicta velit alias. Mollitia hic iste placeat vel omnis ipsum excepturi praesentium modi dolor! Nam earum, architecto facere consectetur porro accusamus qui ducimus eaque error aliquid beatae rerum, possimus reiciendis, odit dolores laboriosam vitae consequatur? Dicta tenetur debitis corrupti incidunt rerum, voluptates nemo blanditiis, id, at corporis quasi. Nihil, obcaecati molestiae laudantium, assumenda, vitae quos quia provident atque modi laboriosam dolorum fugit numquam autem ea rem aut ex! Cum officiis perferendis non laudantium est cumque.
+        </p>
+        <h1><span>Item-2</span><i class="fa-solid fa-caret-down" onclick="fun(1)"></i></h1>
+        <p style="display: none;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint laborum dicta architecto illum aperiam quis repellendus eveniet deleniti? Harum iure culpa quo possimus, inventore, tempora impedit sunt deserunt maiores, dignissimos hic neque dicta velit alias. Mollitia hic iste placeat vel omnis ipsum excepturi praesentium modi dolor! Nam earum, architecto facere consectetur porro accusamus qui ducimus eaque error aliquid beatae rerum, possimus reiciendis, odit dolores laboriosam vitae consequatur? Dicta tenetur debitis corrupti incidunt rerum, voluptates nemo blanditiis, id, at corporis quasi. Nihil, obcaecati molestiae laudantium, assumenda, vitae quos quia provident atque modi laboriosam dolorum fugit numquam autem ea rem aut ex! Cum officiis perferendis non laudantium est cumque.
+        </p>
+        <h1><span>Item-3</span><i class="fa-solid fa-caret-down" onclick="fun(2)"></i></h1>
+        <p style="display: none;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint laborum dicta architecto illum aperiam quis repellendus eveniet deleniti? Harum iure culpa quo possimus, inventore, tempora impedit sunt deserunt maiores, dignissimos hic neque dicta velit alias. Mollitia hic iste placeat vel omnis ipsum excepturi praesentium modi dolor! Nam earum, architecto facere consectetur porro accusamus qui ducimus eaque error aliquid beatae rerum, possimus reiciendis, odit dolores laboriosam vitae consequatur? Dicta tenetur debitis corrupti incidunt rerum, voluptates nemo blanditiis, id, at corporis quasi. Nihil, obcaecati molestiae laudantium, assumenda, vitae quos quia provident atque modi laboriosam dolorum fugit numquam autem ea rem aut ex! Cum officiis perferendis non laudantium est cumque.
+        </p>
+        <h1><span>Item-4</span><i class="fa-solid fa-caret-down" onclick="fun(3)"></i></h1>
+        <p style="display: none;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint laborum dicta architecto illum aperiam quis repellendus eveniet deleniti? Harum iure culpa quo possimus, inventore, tempora impedit sunt deserunt maiores, dignissimos hic neque dicta velit alias. Mollitia hic iste placeat vel omnis ipsum excepturi praesentium modi dolor! Nam earum, architecto facere consectetur porro accusamus qui ducimus eaque error aliquid beatae rerum, possimus reiciendis, odit dolores laboriosam vitae consequatur? Dicta tenetur debitis corrupti incidunt rerum, voluptates nemo blanditiis, id, at corporis quasi. Nihil, obcaecati molestiae laudantium, assumenda, vitae quos quia provident atque modi laboriosam dolorum fugit numquam autem ea rem aut ex! Cum officiis perferendis non laudantium est cumque.
+        </p>
+        <h1><span>Item-5</span><i class="fa-solid fa-caret-down" onclick="fun(4)"></i></h1>
+        <p style="display: none;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint laborum dicta architecto illum aperiam quis repellendus eveniet deleniti? Harum iure culpa quo possimus, inventore, tempora impedit sunt deserunt maiores, dignissimos hic neque dicta velit alias. Mollitia hic iste placeat vel omnis ipsum excepturi praesentium modi dolor! Nam earum, architecto facere consectetur porro accusamus qui ducimus eaque error aliquid beatae rerum, possimus reiciendis, odit dolores laboriosam vitae consequatur? Dicta tenetur debitis corrupti incidunt rerum, voluptates nemo blanditiis, id, at corporis quasi. Nihil, obcaecati molestiae laudantium, assumenda, vitae quos quia provident atque modi laboriosam dolorum fugit numquam autem ea rem aut ex! Cum officiis perferendis non laudantium est cumque.
+        </p>
+        <h1><span>Item-6</span><i class="fa-solid fa-caret-down" onclick="fun(5)"></i></h1>
+        <p style="display: none;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint laborum dicta architecto illum aperiam quis repellendus eveniet deleniti? Harum iure culpa quo possimus, inventore, tempora impedit sunt deserunt maiores, dignissimos hic neque dicta velit alias. Mollitia hic iste placeat vel omnis ipsum excepturi praesentium modi dolor! Nam earum, architecto facere consectetur porro accusamus qui ducimus eaque error aliquid beatae rerum, possimus reiciendis, odit dolores laboriosam vitae consequatur? Dicta tenetur debitis corrupti incidunt rerum, voluptates nemo blanditiis, id, at corporis quasi. Nihil, obcaecati molestiae laudantium, assumenda, vitae quos quia provident atque modi laboriosam dolorum fugit numquam autem ea rem aut ex! Cum officiis perferendis non laudantium est cumque.
+        </p>
+        <h1><span>Item-7</span><i class="fa-solid fa-caret-down" onclick="fun(6)"></i></h1>
+        <p style="display: none;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint laborum dicta architecto illum aperiam quis repellendus eveniet deleniti? Harum iure culpa quo possimus, inventore, tempora impedit sunt deserunt maiores, dignissimos hic neque dicta velit alias. Mollitia hic iste placeat vel omnis ipsum excepturi praesentium modi dolor! Nam earum, architecto facere consectetur porro accusamus qui ducimus eaque error aliquid beatae rerum, possimus reiciendis, odit dolores laboriosam vitae consequatur? Dicta tenetur debitis corrupti incidunt rerum, voluptates nemo blanditiis, id, at corporis quasi. Nihil, obcaecati molestiae laudantium, assumenda, vitae quos quia provident atque modi laboriosam dolorum fugit numquam autem ea rem aut ex! Cum officiis perferendis non laudantium est cumque.
+        </p>
+        <h1><span>Item-8</span><i class="fa-solid fa-caret-down" onclick="fun(7)"></i></h1>
+        <p style="display: none;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint laborum dicta architecto illum aperiam quis repellendus eveniet deleniti? Harum iure culpa quo possimus, inventore, tempora impedit sunt deserunt maiores, dignissimos hic neque dicta velit alias. Mollitia hic iste placeat vel omnis ipsum excepturi praesentium modi dolor! Nam earum, architecto facere consectetur porro accusamus qui ducimus eaque error aliquid beatae rerum, possimus reiciendis, odit dolores laboriosam vitae consequatur? Dicta tenetur debitis corrupti incidunt rerum, voluptates nemo blanditiis, id, at corporis quasi. Nihil, obcaecati molestiae laudantium, assumenda, vitae quos quia provident atque modi laboriosam dolorum fugit numquam autem ea rem aut ex! Cum officiis perferendis non laudantium est cumque.
+        </p>
+        <h1><span>Item-9</span><i class="fa-solid fa-caret-down" onclick="fun(8)"></i></h1>
+        <p style="display: none;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint laborum dicta architecto illum aperiam quis repellendus eveniet deleniti? Harum iure culpa quo possimus, inventore, tempora impedit sunt deserunt maiores, dignissimos hic neque dicta velit alias. Mollitia hic iste placeat vel omnis ipsum excepturi praesentium modi dolor! Nam earum, architecto facere consectetur porro accusamus qui ducimus eaque error aliquid beatae rerum, possimus reiciendis, odit dolores laboriosam vitae consequatur? Dicta tenetur debitis corrupti incidunt rerum, voluptates nemo blanditiis, id, at corporis quasi. Nihil, obcaecati molestiae laudantium, assumenda, vitae quos quia provident atque modi laboriosam dolorum fugit numquam autem ea rem aut ex! Cum officiis perferendis non laudantium est cumque.
+        </p>
+        <h1><span>Item-10</span><i class="fa-solid fa-caret-down" onclick="fun(9)"></i></h1>
+        <p style="display: none;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sint laborum dicta architecto illum aperiam quis repellendus eveniet deleniti? Harum iure culpa quo possimus, inventore, tempora impedit sunt deserunt maiores, dignissimos hic neque dicta velit alias. Mollitia hic iste placeat vel omnis ipsum excepturi praesentium modi dolor! Nam earum, architecto facere consectetur porro accusamus qui ducimus eaque error aliquid beatae rerum, possimus reiciendis, odit dolores laboriosam vitae consequatur? Dicta tenetur debitis corrupti incidunt rerum, voluptates nemo blanditiis, id, at corporis quasi. Nihil, obcaecati molestiae laudantium, assumenda, vitae quos quia provident atque modi laboriosam dolorum fugit numquam autem ea rem aut ex! Cum officiis perferendis non laudantium est cumque.
+        </p>
+    </div>
+    <script>
+            let pr = document.querySelectorAll('p')
+            let ir = document.querySelectorAll('i')
+            let prev = 0
+            function fun(i){
+                if(prev==i){
+                    if(ir[i].className == "fa-solid fa-caret-down"){
+                        ir[i].className = "fa-solid fa-caret-up"
+                        pr[i].style.display = "block"
+                    }
+                    else{
+                        ir[i].className = "fa-solid fa-caret-down"
+                        pr[i].style.display = "none"
+                    }
+                }else{
+                    ir[prev].className = "fa-solid fa-caret-down"
+                    pr[prev].style.display = "none"
+                    ir[i].className = "fa-solid fa-caret-up"
+                    pr[i].style.display = "block"
+                    prev = i
+                }
+            }
+        </script>
+</body>
+</html>

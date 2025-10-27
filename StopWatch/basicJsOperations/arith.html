@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arithmetic</title>
+</head>
+<body>
+    <input type="text" placeholder="Enter a value">
+    <input type="text" placeholder="Enter a value">
+    <div>
+        <button onclick="fun('+')">+</button>
+        <button onclick="fun('-')">-</button>
+        <button onclick="fun('*')">*</button>
+        <button onclick="fun('/')">/</button>
+        <button onclick="fun('%')">%</button>
+        <button onclick="fun('**')">**</button>
+        <button onclick="reset()">Reset</button>
+    </div>
+    <input type="text" readonly placeholder="Result will be displayed here">
+    <script>
+        let ipr = document.getElementsByTagName('input')
+        function fun(ch){
+            let a = parseInt(ipr[0].value)
+            let b = parseInt(ipr[1].value)
+            switch (ch){
+                case '+':
+                    ipr[2].value = `Sum of ${a}, ${b} is ${a+b}`
+                    break
+                case '-':
+                    ipr[2].value = `Diff of ${a}, ${b} is ${a-b}`
+                    break
+                case '*':
+                    ipr[2].value = `Mul of ${a}, ${b} is ${a*b}`
+                    break
+                case '/':
+                    ipr[2].value = `Div of ${a}, ${b} is ${a/b}`
+                    break
+                case '%':
+                    ipr[2].value = `Modulo of ${a}, ${b} is ${a%b}`
+                    break
+                case '**':
+                    ipr[2].value = `Power of ${a}, ${b} is ${a**b}`
+                    break
+                default:
+                    ipr[2].value = 'Invalid Operation';
+            }
+        }
+        function reset(){
+            ipr[0].value = ""
+            ipr[1].value = ''
+            ipr[2].value = ''
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text">
+    <button onclick="add()">Add</button>
+    <ul></ul>
+    <script>
+        let lir = document.querySelector('ul')
+        let ipr = document.querySelector('input')
+        let arr = []
+        let disp = ()=>{
+            let s = ""
+            for(let i=0;i<arr.length;i++){
+                s = s+`<li>${arr[i]}</li>`
+            }
+            lir.innerHTML = s
+        }
+        let add = ()=>{
+            arr.push(ipr.value)
+            ipr.value = ""
+            disp()
+        }
+    </script>
+</body>
+</html>

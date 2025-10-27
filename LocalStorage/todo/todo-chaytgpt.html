@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Task Manager — Fixed</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 900px; margin: 24px auto; }
+    input, textarea, button { margin: 6px 6px 6px 0; padding: 8px; }
+    textarea { width: 100%; height: 80px; box-sizing: border-box; }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    table { width: 100%; margin-top: 12px; border-collapse: collapse; }
+    th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+    th { background: #f4f4f4; }
+    .controls { margin-top: 12px; }
+    button { border-radius: 4px; border: none; background: #007bff; color: white; cursor: pointer; }
+    button.secondary { background: #6c757d; }
+    .hide { display: none !important; }
+  </style>
+</head>
+<body>
+  <h2>Task Manager</h2>
+
+  <div>
+    <label>User ID: <input id="uid" name="uid" type="text" placeholder="Enter User id"></label>
+    <label>Title: <input id="title" name="title" type="text" placeholder="Enter title"></label>
+    <label>Deadline: <input id="dl" name="dl" type="date"></label>
+  </div>
+  <div style="margin-top:8px">
+    <textarea id="desc" placeholder="Enter description"></textarea>
+  </div>
+
+  <div class="controls">
+    <button id="addBtn">Add Task</button>
+    <button id="updBtn" class="hide">Update Task</button>
+    <button id="clearBtn" class="secondary">Clear All</button>
+  </div>
+
+  <table id="pendingTable" aria-label="Pending tasks"></table>
+  <table id="completedTable" aria-label="Completed tasks"></table>
+
+  <script>
+    // DOM refs
+    const uidInput = document.getElementById('uid');
+    const titleInput = document.getElementById('title');
+    const dlInput = document.getElementById('dl');
+    const descInput = document.getElementById('desc');
+
+    const addBtn = document.getElementById('addBtn');
+    const updBtn = document.getElementById('updBtn');
+    const clearBtn = document.getElementById('clearBtn');
+
+    const pendingTable = document.getElementById('pendingTable');
+    const completedTable = document.getElementById('completedTable');
+
+    let editIndex = -1;
+
+    // Utility: read tasks safely
+    function readTasks(key) {
+      const raw = localStorage.getItem(key);
+      if (!raw) return [];
+      try { return JSON.parse(raw) || []; } catch (e) { return []; }
+    }
+    function writeTasks(key, arr) {
+      localStorage.setItem(key, JSON.stringify(arr));
+    }
+
+    // Validation
+    function validateInputs() {
+      if (!uidInput.value.trim() || !titleInput.value.trim() || !descInput.value.trim() || !dlInput.value) {
+        alert('Please fill all fields (User ID, Title, Description, Deadline).');
+        return false;
+      }
+      return true;
+    }
+
+    // Clear input fields
+    function clearInputs() {
+      uidInput.value = '';
+      titleInput.value = '';
+      dlInput.value = '';
+      descInput.value = '';
+      editIndex = -1;
+      updBtn.classList.add('hide');
+      addBtn.classList.remove('hide');
+    }
+
+    // Render pending tasks
+    function renderPending() {
+      const arr = readTasks('task');
+      if (!arr.length) {
+        pendingTable.innerHTML = '';
+        pendingTable.border = 0;
+        return;
+      }
+      let s = `<tr><th colspan="8">Pending Tasks:</th></tr>
+               <tr><th>SNO</th><th>UID</th><th>Title</th><th>Desc</th><th>Deadline</th><th>Edit</th><th>Delete</th><th>Complete</th></tr>`;
+      for (let i = 0; i < arr.length; i++) {
+        const t = arr[i];
+        // escape values for safety (basic)
+        const uid = String(t.uid || '').replace(/</g,'&lt;');
+        const title = String(t.title || '').replace(/</g,'&lt;');
+        const desc = String(t.desc || '').replace(/</g,'&lt;');
+        const dl = String(t.dl || '').replace(/</g,'&lt;');
+        s += `<tr>
+                <td>${i+1}</td>
+                <td>${uid}</td>
+                <td>${title}</td>
+                <td>${desc}</td>
+                <td>${dl}</td>
+                <td><button onclick="editTask(${i})">Edit</button></td>
+                <td><button onclick="deleteTask(${i})">Delete</button></td>
+                <td><button onclick="completeTask(${i})">Completed</button></td>
+              </tr>`;
+      }
+      pendingTable.innerHTML = s;
+      pendingTable.border = 2;
+    }
+
+    // Render completed tasks
+    function renderCompleted() {
+      const carr = readTasks('cmptask');
+      if (!carr.length) {
+        completedTable.innerHTML = '';
+        completedTable.border = 0;
+        return;
+      }
+      let s = `<tr><th colspan="5">Completed Tasks:</th></tr>
+               <tr><th>SNO</th><th>UID</th><th>Title</th><th>Desc</th><th>Deadline</th></tr>`;
+      for (let i = 0; i < carr.length; i++) {
+        const t = carr[i];
+        const uid = String(t.uid || '').replace(/</g,'&lt;');
+        const title = String(t.title || '').replace(/</g,'&lt;');
+        const desc = String(t.desc || '').replace(/</g,'&lt;');
+        const dl = String(t.dl || '').replace(/</g,'&lt;');
+        s += `<tr><td>${i+1}</td><td>${uid}</td><td>${title}</td><td>${desc}</td><td>${dl}</td></tr>`;
+      }
+      completedTable.innerHTML = s;
+      completedTable.border = 2;
+    }
+
+    // Add task
+    addBtn.addEventListener('click', () => {
+      if (!validateInputs()) return;
+      const obj = {
+        uid: uidInput.value.trim(),
+        title: titleInput.value.trim(),
+        desc: descInput.value.trim(),
+        dl: dlInput.value
+      };
+      const arr = readTasks('task');
+      // Optional duplicate check
+      // if (arr.some(t => t.uid === obj.uid && t.title === obj.title)) { alert('Duplicate task for same user'); return; }
+      arr.push(obj);
+      writeTasks('task', arr);
+      renderPending();
+      renderCompleted();
+      clearInputs();
+    });
+
+    // Update task
+    updBtn.addEventListener('click', () => {
+      if (editIndex < 0) { alert('No task selected to update'); return; }
+      if (!validateInputs()) return;
+      const arr = readTasks('task');
+      if (editIndex >= arr.length) { alert('Selected task no longer exists'); clearInputs(); renderPending(); return; }
+      arr[editIndex] = {
+        uid: uidInput.value.trim(),
+        title: titleInput.value.trim(),
+        desc: descInput.value.trim(),
+        dl: dlInput.value
+      };
+      writeTasks('task', arr);
+      renderPending();
+      clearInputs();
+    });
+
+    // Clear all tasks
+    clearBtn.addEventListener('click', () => {
+      if (!confirm('Are you sure you want to clear ALL tasks (pending and completed)?')) return;
+      localStorage.removeItem('task');
+      localStorage.removeItem('cmptask');
+      renderPending();
+      renderCompleted();
+      clearInputs();
+    });
+
+    // Functions used in generated table buttons (must be on window for inline onclick to work)
+    window.editTask = function(idx) {
+      const arr = readTasks('task');
+      if (!arr[idx]) { alert('Task not found'); renderPending(); return; }
+      uidInput.value = arr[idx].uid || '';
+      titleInput.value = arr[idx].title || '';
+      dlInput.value = arr[idx].dl || '';
+      descInput.value = arr[idx].desc || '';
+      editIndex = idx;
+      addBtn.classList.add('hide');
+      updBtn.classList.remove('hide');
+      // scroll to top so user sees inputs
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    window.deleteTask = function(idx) {
+      const arr = readTasks('task');
+      if (!arr[idx]) { alert('Task not found'); renderPending(); return; }
+      if (!confirm('Delete this task?')) return;
+      arr.splice(idx, 1);
+      writeTasks('task', arr);
+      // if we were editing that index, cancel edit
+      if (editIndex === idx) clearInputs();
+      renderPending();
+      renderCompleted();
+    };
+
+    window.completeTask = function(idx) {
+      const arr = readTasks('task');
+      if (!arr[idx]) { alert('Task not found'); renderPending(); return; }
+      const carr = readTasks('cmptask');
+      carr.push(arr[idx]);
+      arr.splice(idx, 1);
+      writeTasks('task', arr);
+      writeTasks('cmptask', carr);
+      // if we were editing that index, cancel edit
+      if (editIndex === idx) clearInputs();
+      renderPending();
+      renderCompleted();
+    };
+
+    // initial render
+    renderPending();
+    renderCompleted();
+  </script>
+</body>
+</html>

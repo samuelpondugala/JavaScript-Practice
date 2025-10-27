@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text">
+    <button onclick="fact()">Calculate</button>
+    <h1></h1>
+    <script>
+        let ipr = document.querySelector('input')
+        let h1r = document.querySelector("h1")
+        function fact(){
+            let n = parseInt(ipr.value)
+            let f = 1
+            for(let i = 1; i<=n;i++){
+                f*=i
+            }
+            h1r.innerHTML = f
+            ipr.value = ""
+        }
+    </script>
+</body>
+</html>

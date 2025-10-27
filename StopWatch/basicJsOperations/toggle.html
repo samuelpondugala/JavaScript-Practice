@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet, porro?Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum dolorum minus sunt recusandae, omnis ut quod veritatis facilis, ex reiciendis maiores animi modi unde iure. Placeat nemo repellendus rerum aspernatur!</div>
+    <button onclick="fun(this)">Hide</button>
+    <script>
+    p = document.querySelector('div')
+        let fun = (btn)=>{
+            if(btn.innerHTML=="Hide"){
+                p.style.display = "none"
+                btn.innerHTML = "Show"
+            }
+            else{
+                p.style.display = "block"
+                btn.innerHTML = "Hide"
+            }
+        }
+        
+    </script>
+</body>
+</html>

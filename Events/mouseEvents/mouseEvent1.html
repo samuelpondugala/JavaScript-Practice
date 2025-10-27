@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MouseEvent</title>
+    <style>
+        .con{
+            width:300px;
+            height: 400px;
+            background-color: cadetblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="con" oncontextmenu="fun3(event)" onmouseover="fun4(this)" onmouseout="fun5(this)">
+        <button onclick="fun1()" ondblclick="fun2()">Click</button>
+    </div>
+    <script>
+        let dr = document.querySelector(".con")
+        let fun1=()=>{
+            dr.style.backgroundColor = "blue"
+        }
+        let fun2=()=>{
+            dr.style.backgroundColor = "orange"
+        }
+        let fun3 = (e)=>{
+            e.prevenDefault()
+        }
+        let fun4= (r)=>{
+            r.style.backgroundColor = "pink"
+        }
+        let fun5=(r)=>{
+            r.style.backgroundColor= "brown"
+        }
+    </script>
+</body>
+</html>

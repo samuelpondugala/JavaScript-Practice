@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div style="color: crimson;"></div>
+    <input type="text" placeholder="Enter uid"/>
+    <input type="password" placeholder="Enter password"/>
+    <button onclick="login()">Login</button>
+    <p>If you doesnot have account create by <a href="reg.html">Click</a></p>
+    <script>
+        let dr=document.querySelector("div")
+        let ipr=document.querySelectorAll("input")
+        let login=()=>{
+            let uid=ipr[0].value
+            let pwd=ipr[1].value
+            let dbuid=localStorage.getItem("uid")
+            let dbpwd=localStorage.getItem("pwd")
+            if(dbuid==uid&&dbpwd==pwd)
+        {
+            window.location="home.html"
+        }
+        else{
+            dr.innerHTML="Provide valid details"
+        }
+        }
+    </script>
+</body>
+</html>

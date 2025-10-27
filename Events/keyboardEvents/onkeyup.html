@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>On Key Up</title>
+</head>
+<body onkeyup="fun(event)">
+    <input type="text" readonly >
+    <textarea></textarea>
+    <script>
+        let ipr = document.querySelector('input')
+        let txt = document.querySelector('textarea')
+        let fun= (e)=>{
+        
+            txt.innerHTML = e.key
+        }
+    </script>
+</body>
+</html>
