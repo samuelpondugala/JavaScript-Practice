@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const product = {
+            id: 101, 
+            name: "laptop",
+            price : 15000,
+            details:{
+                brand: "HP",
+                warranty : "1 Year"
+            }
+        }
+        const{ name: productName, price, details: {brand}} = product;
+        console.log(`product: ${productName}, Brand : ${brand}, price: ₹${price}`);
+    </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+function getUser() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({ name: "Samuel", age: 24 });
+    }, 2000);
+  });
+}
+
+getUser().then(user => console.log("User:", user));
+</script>
+</body>
+</html>
