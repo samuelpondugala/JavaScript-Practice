@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Time out</title>
+</head>
+<body>
+    <h1></h1>
+    <script>
+        function fun(callback){
+            setTimeout(callback, 4000)
+            document.querySelector('h1').innerHTML = "This is from function block"
+            console.log("Normal function is executed");
+            
+        }
+        function callback(){
+            document.querySelector('h1').innerHTML = "This is coming from Callback function"
+            console.log("callback function executed");
+            
+        }
+        fun(callback)
+    </script>
+</body>
+</html>

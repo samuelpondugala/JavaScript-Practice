@@ -40,3 +40,6 @@
 // let reg = /a.k/g
 // console.log(reg.test(s))
 // Extract all numerical values from a given stringe
+// let s = "1928379183bicwbi283927"
+// let reg = /\d+/g
+// console.log(s.match(reg))

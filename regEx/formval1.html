@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .inpcon{
+            width: 50%;
+            display: flex;
+            height: 40px;
+            align-items: center;
+            gap:5px;
+        }
+        img{
+            width: 30px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <form>
+        <div class="inpcon">
+            <label for="uid">UserID</label>
+            <input type="text" placeholder="enter uid" onblur="fun1(this)"/>
+            <img src="tk1.png" style="display: none;"/>
+            <img src="x1.png" style="display: none;"/>
+        </div>
+
+        <div class="inpcon">
+            <label for="uid">Name:</label>
+            <input type="text" placeholder="enter name" onblur="fun2(this)"/>
+            <img src="tk1.png" style="display: none;"/>
+            <img src="x1.png" style="display: none;"/>
+        </div>
+
+         <div class="inpcon">
+            <label for="uid">Phno:</label>
+            <input type="text" placeholder="enter phno" onblur="fun3(this)"/>
+            <img src="tk1.png" style="display: none;"/>
+            <img src="x1.png" style="display: none;"/>
+        </div>
+         <div class="inpcon">
+            <label for="uid">E-mail:</label>
+            <input type="text" placeholder="enter email" onblur="fun4(this)"/>
+            <img src="tk1.png" style="display: none;"/>
+            <img src="x1.png" style="display: none;"/>
+        </div>
+        <div class="pwd">
+            <input type="text" placeholder="Enter password" onkeyup="valpwd(this)"/>
+            <img src="tk1.png" style="display: none;"/>
+            <img src="x1.png" style="display: none;"/>
+       
+            <div class="pwdcnst">
+                <p>Starts with A-Z</p>
+                <p>Contains one lower case letter</p>
+                <p>one digit</p>
+                <p>one symbol from @$^#!</p>
+                <p>space not allowed</p>
+                <p>length>=6</p>
+
+            </div>
+
+            
+        </div>
+    </form>
+    <script>
+        let imgr=document.querySelectorAll("img")
+        let pr=document.querySelectorAll("p")
+        let fun1=(e)=>{
+          if(/^[a-z][a-z0-9]{4,}$/i.test(e.value))
+          {
+            imgr[0].style.display="block"
+             imgr[1].style.display="none"
+          }
+          else{
+            imgr[1].style.display="block"
+             imgr[0].style.display="none"
+          }
+
+        }
+
+        let fun2=(e)=>{
+          if(/^[a-z ]{3,}$/i.test(e.value.trim()))
+          {
+            imgr[2].style.display="block"
+             imgr[3].style.display="none"
+          }
+          else{
+            imgr[3].style.display="block"
+             imgr[2].style.display="none"
+          }
+
+        }
+
+         let fun3=(e)=>{
+          if(/^[6-9][0-9]{9}$/.test(e.value.trim()))
+          {
+            imgr[4].style.display="block"
+             imgr[5].style.display="none"
+          }
+          else{
+            imgr[5].style.display="block"
+             imgr[4].style.display="none"
+          }
+
+        }
+
+         let fun4=(e)=>{
+          if(/^[a-z0-9]+[.]?[a-z0-9]+[@][a-z]{3,}[.](in|com|org|edu|asia|co.in)$/i.test(e.value.trim()))
+          {
+            imgr[6].style.display="block"
+             imgr[7].style.display="none"
+          }
+          else{
+            imgr[7].style.display="block"
+             imgr[6].style.display="none"
+          }
+
+        }
+        let valpwd=(e)=>{
+            let s=e.value
+            let f=true
+            if(s.length>=6)
+        {
+            pr[5].style.color="green"
+        }
+        else{
+             pr[5].style.color="red"
+             f=false
+        }
+
+        if(/^[A-Z]/.test(s))
+        {
+            pr[0].style.color="green"
+        }
+        else{
+             pr[0].style.color="red"
+              f=false
+        }
+
+        if(/[a-z]+/.test(s))
+        {
+            pr[1].style.color="green"
+        }
+        else{
+             pr[1].style.color="red"
+              f=false
+        }
+ if(/[0-9]+/.test(s))
+        {
+            pr[2].style.color="green"
+        }
+        else{
+             pr[2].style.color="red"
+              f=false
+        }
+
+        if(/[@#$!^]+/.test(s))
+        {
+            pr[3].style.color="green"
+        }
+        else{
+             pr[3].style.color="red"
+              f=false
+        }
+        if(/^\S+$/.test(s))
+        {
+            pr[4].style.color="green"
+        }
+        else{
+             pr[4].style.color="red"
+              f=false
+        }
+
+        if(f)
+        {
+            imgr[8].style.display="inline-block"
+             imgr[9].style.display="none"
+        }
+        else
+        {
+             imgr[9].style.display="inline-block"
+             imgr[8].style.display="none"
+        }
+
+
+        }
+    </script>
+</body>
+</html>

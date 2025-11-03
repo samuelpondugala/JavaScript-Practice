@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
+</head>
+<body>
+    <table border="1" >
+
+    </table>
+    <script>
+        tblr = document.querySelector('table')
+        axios.get("https://jsonplaceholder.typicode.com/posts").then((res)=>{
+            let trr = document.createElement('tr')
+            trr.innerHTML = "<th>Sno</th><th>Title</th><th>Details</th>"
+            tblr.appendChild(trr)
+            for(let i =0; i<res.data.length;i++){
+                let tr=document.createElement('tr')
+                tr.innerHTML = `<td>${res.data[i].id}</td><td>${res.data[i].title}</td><td>${res.data[i].body}</td>`
+                tblr.appendChild(tr)
+            }
+        })
+    </script>
+</body>
+</html>
