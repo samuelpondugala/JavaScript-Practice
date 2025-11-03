@@ -42,7 +42,7 @@
         .card .image-con img{
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit:contain;
         }
         .card .top{
             display: flex;
@@ -61,9 +61,13 @@
         }
         .desc{
             height: 100px;
-            overflow: auto;
+            /* overflow: auto; */
             padding: 10px;
             text-align: justify;
+            overflow: hidden;
+            white-space: wrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         .desc::-webkit-scrollbar{
             scrollbar-width: none;
@@ -114,7 +118,7 @@
                     <p><b>Rating:${obj.rating.rate}</b>(${obj.rating.count})</p>
                 </div>
                 <div class = "desc">
-                <p>${obj.description}</p>
+                <p><b>Description: </b>${obj.description}</p>
                 </div>
                 <div class="btns">
                     <button>Add to cart</button>
